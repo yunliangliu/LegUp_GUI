@@ -3,9 +3,13 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    Q_INIT_RESOURCE(legup);
 
-    return a.exec();
+    QApplication app(argc, argv);
+    app.setOrganizationName("QtProject");
+    app.setApplicationName("Application Example");
+    MainWindow mainWin;
+    mainWin.show();
+
+    return app.exec();
 }
