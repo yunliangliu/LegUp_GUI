@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -44,16 +45,22 @@ public:
     QAction *actionOpen_File;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QTreeView *treeView;
+    QVBoxLayout *verticalLayout_3;
     QLabel *label_2;
     QTextBrowser *textBrowser;
+    QFrame *line;
+    QVBoxLayout *verticalLayout_7;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_3;
     QTextEdit *textEdit;
+    QVBoxLayout *verticalLayout_5;
     QLabel *label_4;
     QTextBrowser *textBrowser_2;
+    QVBoxLayout *verticalLayout_6;
     QLabel *label_5;
     QTextBrowser *textBrowser_3;
     QMenuBar *menuBar;
@@ -70,7 +77,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(530, 365);
+        MainWindow->resize(541, 738);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -122,10 +129,15 @@ public:
         actionOpen_File->setIcon(icon7);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy);
         horizontalLayout = new QHBoxLayout(centralWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -144,23 +156,42 @@ public:
 
         verticalLayout->addWidget(treeView);
 
+
+        verticalLayout_4->addLayout(verticalLayout);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
 
-        verticalLayout->addWidget(label_2);
+        verticalLayout_3->addWidget(label_2);
 
         textBrowser = new QTextBrowser(centralWidget);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
         sizePolicy1.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
         textBrowser->setSizePolicy(sizePolicy1);
 
-        verticalLayout->addWidget(textBrowser);
+        verticalLayout_3->addWidget(textBrowser);
 
-        verticalLayout->setStretch(1, 5);
-        verticalLayout->setStretch(3, 1);
 
-        horizontalLayout->addLayout(verticalLayout);
+        verticalLayout_4->addLayout(verticalLayout_3);
 
+        verticalLayout_4->setStretch(0, 5);
+        verticalLayout_4->setStretch(1, 1);
+
+        horizontalLayout->addLayout(verticalLayout_4);
+
+        line = new QFrame(centralWidget);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout->addWidget(line);
+
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
@@ -176,42 +207,57 @@ public:
 
         verticalLayout_2->addWidget(textEdit);
 
+
+        verticalLayout_7->addLayout(verticalLayout_2);
+
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
 
-        verticalLayout_2->addWidget(label_4);
+        verticalLayout_5->addWidget(label_4);
 
         textBrowser_2 = new QTextBrowser(centralWidget);
         textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
         sizePolicy1.setHeightForWidth(textBrowser_2->sizePolicy().hasHeightForWidth());
         textBrowser_2->setSizePolicy(sizePolicy1);
 
-        verticalLayout_2->addWidget(textBrowser_2);
+        verticalLayout_5->addWidget(textBrowser_2);
 
+
+        verticalLayout_7->addLayout(verticalLayout_5);
+
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QStringLiteral("label_5"));
 
-        verticalLayout_2->addWidget(label_5);
+        verticalLayout_6->addWidget(label_5);
 
         textBrowser_3 = new QTextBrowser(centralWidget);
         textBrowser_3->setObjectName(QStringLiteral("textBrowser_3"));
         sizePolicy1.setHeightForWidth(textBrowser_3->sizePolicy().hasHeightForWidth());
         textBrowser_3->setSizePolicy(sizePolicy1);
 
-        verticalLayout_2->addWidget(textBrowser_3);
+        verticalLayout_6->addWidget(textBrowser_3);
 
-        verticalLayout_2->setStretch(1, 4);
-        verticalLayout_2->setStretch(3, 1);
-        verticalLayout_2->setStretch(5, 1);
 
-        horizontalLayout->addLayout(verticalLayout_2);
+        verticalLayout_7->addLayout(verticalLayout_6);
+
+        verticalLayout_7->setStretch(0, 4);
+        verticalLayout_7->setStretch(1, 1);
+        verticalLayout_7->setStretch(2, 1);
+
+        horizontalLayout->addLayout(verticalLayout_7);
 
         horizontalLayout->setStretch(0, 1);
-        horizontalLayout->setStretch(1, 3);
+        horizontalLayout->setStretch(2, 3);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 530, 21));
+        menuBar->setGeometry(QRect(0, 0, 541, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuOpen = new QMenu(menuFile);

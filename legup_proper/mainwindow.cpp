@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
     createToolBar();
 
     statusBar->showMessage(tr("Welcome to LegUp"));
+
+    QString path = "C:/Users/Ang/Documents/legup";
+    projectDirModel = new QFileSystemModel(this);
+    projectDirModel->setRootPath(path);
+    treeView->setModel(projectDirModel);
 }
 
 MainWindow::~MainWindow()
@@ -40,6 +45,8 @@ void MainWindow::init(){
     statusBar = ui->statusBar;
 
     fileEdit = ui->textEdit;
+
+    treeView = ui->treeView;
 
     connect(fileEdit->document(), SIGNAL(contentsChanged()),
             this, SLOT(documentWasModified()));
@@ -162,10 +169,10 @@ void MainWindow::run(){
 
 void MainWindow::about(){
     QMessageBox::about(this, tr("About LegUp"),
-             tr("LegUp is an open source <b>high-level synthesis</b> "
+             tr("<p style='text-align:center;'>LegUp is an open source <b>high-level synthesis</b> "
                 "tool being developed at the University of Toronto.<br>"
                 "You can learn more about LegUp by visiting its official website: "
-                "<a href='http://legup.eecg.utoronto.ca/'>http://legup.eecg.utoronto.ca/</a>"));
+                "<a href='http://legup.eecg.utoronto.ca/'>http://legup.eecg.utoronto.ca/</a></p>"));
 }
 
 /***misc functions***/

@@ -48,6 +48,10 @@ private:
 
     QString curFile;
 
+    QTreeView *treeView;
+
+    QFileSystemModel *projectDirModel;
+
     void init();
     void createActions();
     void createToolBar();
