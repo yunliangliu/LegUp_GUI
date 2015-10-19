@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtWidgets>
 
 namespace Ui {
 class MainWindow;
@@ -16,20 +17,24 @@ public:
     ~MainWindow();
 
 private slots:
+    void newProject();
     void newFile();
-    void open();
     void openProject();
-    void save();
-    void saveAs();
+    void openFile();
+    bool save();
+    bool saveAs();
     void run();
     void about();
+
+    void documentWasModified();
 
 private:
     Ui::MainWindow *ui;
 
-    QAction *newAct;
-    QAction *openAct;
+    QAction *newProjectAct;
+    QAction *newFileAct;
     QAction *openProjectAct;
+    QAction *openFileAct;
     QAction *saveAct;
     QAction *saveAsAct;
     QAction *exitAct;
@@ -37,10 +42,21 @@ private:
     QAction *aboutAct;
 
     QToolBar *toolBar;
+    QStatusBar *statusBar;
+
+    QTextEdit *fileEdit;
+
+    QString curFile;
 
     void init();
     void createActions();
     void createToolBar();
+
+    void loadFile(const QString &fileName);
+    bool saveFile(const QString &fileName);
+    bool maybeSave();
+    void setCurrentFile(const QString &fileName);
+
 };
 
 #endif // MAINWINDOW_H

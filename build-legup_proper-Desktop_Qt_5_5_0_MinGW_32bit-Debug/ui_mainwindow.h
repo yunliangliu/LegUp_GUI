@@ -34,12 +34,14 @@ class Ui_MainWindow
 public:
     QAction *actionAbout_LegUp;
     QAction *actionRun;
-    QAction *actionNew;
-    QAction *actionOpen;
     QAction *actionSave;
     QAction *actionSave_As;
     QAction *actionExit;
     QAction *actionOpen_Project;
+    QAction *actionNew_Project;
+    QAction *actionNew_File;
+    QAction *actionOpen_Project_2;
+    QAction *actionOpen_File;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
@@ -56,8 +58,11 @@ public:
     QTextBrowser *textBrowser_3;
     QMenuBar *menuBar;
     QMenu *menuFile;
+    QMenu *menuOpen;
+    QMenu *menuNew;
     QMenu *menuBuild;
-    QMenu *menuAbout;
+    QMenu *menuHelp;
+    QMenu *menuOptions;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -76,29 +81,40 @@ public:
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/images/Run.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionRun->setIcon(icon1);
-        actionNew = new QAction(MainWindow);
-        actionNew->setObjectName(QStringLiteral("actionNew"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/images/New.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionNew->setIcon(icon2);
-        actionOpen = new QAction(MainWindow);
-        actionOpen->setObjectName(QStringLiteral("actionOpen"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/images/Open.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionOpen->setIcon(icon3);
         actionSave = new QAction(MainWindow);
         actionSave->setObjectName(QStringLiteral("actionSave"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/images/Save.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionSave->setIcon(icon4);
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/images/Save.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSave->setIcon(icon2);
         actionSave_As = new QAction(MainWindow);
         actionSave_As->setObjectName(QStringLiteral("actionSave_As"));
-        actionSave_As->setIcon(icon4);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QStringLiteral("actionExit"));
         actionOpen_Project = new QAction(MainWindow);
         actionOpen_Project->setObjectName(QStringLiteral("actionOpen_Project"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/images/Open.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionOpen_Project->setIcon(icon3);
+        actionNew_Project = new QAction(MainWindow);
+        actionNew_Project->setObjectName(QStringLiteral("actionNew_Project"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/images/NewProject.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionNew_Project->setIcon(icon4);
+        actionNew_File = new QAction(MainWindow);
+        actionNew_File->setObjectName(QStringLiteral("actionNew_File"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/images/NewFile.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionNew_File->setIcon(icon5);
+        actionOpen_Project_2 = new QAction(MainWindow);
+        actionOpen_Project_2->setObjectName(QStringLiteral("actionOpen_Project_2"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/images/OpenProject.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionOpen_Project_2->setIcon(icon6);
+        actionOpen_File = new QAction(MainWindow);
+        actionOpen_File->setObjectName(QStringLiteral("actionOpen_File"));
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/images/OpenFile.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionOpen_File->setIcon(icon7);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout = new QHBoxLayout(centralWidget);
@@ -173,10 +189,16 @@ public:
         menuBar->setGeometry(QRect(0, 0, 530, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
+        menuOpen = new QMenu(menuFile);
+        menuOpen->setObjectName(QStringLiteral("menuOpen"));
+        menuNew = new QMenu(menuFile);
+        menuNew->setObjectName(QStringLiteral("menuNew"));
         menuBuild = new QMenu(menuBar);
         menuBuild->setObjectName(QStringLiteral("menuBuild"));
-        menuAbout = new QMenu(menuBar);
-        menuAbout->setObjectName(QStringLiteral("menuAbout"));
+        menuHelp = new QMenu(menuBar);
+        menuHelp->setObjectName(QStringLiteral("menuHelp"));
+        menuOptions = new QMenu(menuBar);
+        menuOptions->setObjectName(QStringLiteral("menuOptions"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -187,16 +209,20 @@ public:
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuBuild->menuAction());
-        menuBar->addAction(menuAbout->menuAction());
-        menuFile->addAction(actionNew);
-        menuFile->addAction(actionOpen);
-        menuFile->addAction(actionOpen_Project);
+        menuBar->addAction(menuOptions->menuAction());
+        menuBar->addAction(menuHelp->menuAction());
+        menuFile->addAction(menuNew->menuAction());
+        menuFile->addAction(menuOpen->menuAction());
         menuFile->addAction(actionSave);
         menuFile->addAction(actionSave_As);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
+        menuOpen->addAction(actionOpen_Project_2);
+        menuOpen->addAction(actionOpen_File);
+        menuNew->addAction(actionNew_Project);
+        menuNew->addAction(actionNew_File);
         menuBuild->addAction(actionRun);
-        menuAbout->addAction(actionAbout_LegUp);
+        menuHelp->addAction(actionAbout_LegUp);
 
         retranslateUi(MainWindow);
 
@@ -208,12 +234,14 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "LegUp", 0));
         actionAbout_LegUp->setText(QApplication::translate("MainWindow", "About LegUp", 0));
         actionRun->setText(QApplication::translate("MainWindow", "Run", 0));
-        actionNew->setText(QApplication::translate("MainWindow", "New", 0));
-        actionOpen->setText(QApplication::translate("MainWindow", "Open", 0));
         actionSave->setText(QApplication::translate("MainWindow", "Save", 0));
         actionSave_As->setText(QApplication::translate("MainWindow", "Save As", 0));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0));
         actionOpen_Project->setText(QApplication::translate("MainWindow", "Open Project", 0));
+        actionNew_Project->setText(QApplication::translate("MainWindow", "New Project", 0));
+        actionNew_File->setText(QApplication::translate("MainWindow", "New File", 0));
+        actionOpen_Project_2->setText(QApplication::translate("MainWindow", "Open Project", 0));
+        actionOpen_File->setText(QApplication::translate("MainWindow", "Open File", 0));
         label->setText(QApplication::translate("MainWindow", "Projects", 0));
         label_2->setText(QApplication::translate("MainWindow", "About", 0));
         textBrowser->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -238,8 +266,11 @@ public:
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ang-PC: $ Hello World</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ang-PC: $ </p></body></html>", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
+        menuOpen->setTitle(QApplication::translate("MainWindow", "Open", 0));
+        menuNew->setTitle(QApplication::translate("MainWindow", "New", 0));
         menuBuild->setTitle(QApplication::translate("MainWindow", "Build", 0));
-        menuAbout->setTitle(QApplication::translate("MainWindow", "About", 0));
+        menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));
+        menuOptions->setTitle(QApplication::translate("MainWindow", "Options", 0));
     } // retranslateUi
 
 };
