@@ -20,10 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     statusBar->showMessage(tr("Welcome to LegUp"));
 
-    QString path = "C:/Users/Ang/Documents/legup";
-    projectDirModel = new QFileSystemModel(this);
-    projectDirModel->setRootPath(path);
-    treeView->setModel(projectDirModel);
+    dirModel = new QFileSystemModel(this);
+    dirModel->setRootPath("C:/");
+    treeView->setModel(dirModel);
+    QModelIndex index=dirModel->index("C:/Users/Ang/Documents/legup");
+    treeView->setRootIndex(index);
+    treeView->show();
 }
 
 MainWindow::~MainWindow()

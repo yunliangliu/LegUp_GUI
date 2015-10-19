@@ -50,7 +50,7 @@ private:
 
     QTreeView *treeView;
 
-    QFileSystemModel *projectDirModel;
+    QFileSystemModel *dirModel;
 
     void init();
     void createActions();

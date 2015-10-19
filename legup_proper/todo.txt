@@ -1,0 +1,6 @@
+- implement console
+- implement new project, open project features
+- integrate project with file edit
+- run script
+- choose better widgets
+- better design
