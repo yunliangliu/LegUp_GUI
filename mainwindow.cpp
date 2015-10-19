@@ -3,7 +3,17 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(){
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
     textEdit = new QPlainTextEdit;
     setCentralWidget(textEdit);
 

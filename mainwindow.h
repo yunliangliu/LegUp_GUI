@@ -8,12 +8,17 @@ class QAction;
 class QMenu;
 class QPlainTextEdit;
 
+namespace Ui {
+    class MainWindow;
+}
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow();
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 protected:
     void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
@@ -51,6 +56,8 @@ private:
     QAction *saveAsAct;
     QAction *exitAct;
     QAction *aboutAct;
+
+    Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H
