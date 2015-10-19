@@ -13,13 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
@@ -44,7 +44,9 @@ public:
     QAction *actionOpen_Project_2;
     QAction *actionOpen_File;
     QWidget *centralWidget;
-    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout;
+    QSplitter *splitter;
+    QWidget *widget;
     QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout;
     QLabel *label;
@@ -52,7 +54,7 @@ public:
     QVBoxLayout *verticalLayout_3;
     QLabel *label_2;
     QTextBrowser *textBrowser;
-    QFrame *line;
+    QWidget *widget1;
     QVBoxLayout *verticalLayout_7;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_3;
@@ -131,22 +133,29 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
         centralWidget->setSizePolicy(sizePolicy);
-        horizontalLayout = new QHBoxLayout(centralWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        verticalLayout_4 = new QVBoxLayout();
+        gridLayout = new QGridLayout(centralWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        splitter = new QSplitter(centralWidget);
+        splitter->setObjectName(QStringLiteral("splitter"));
+        splitter->setOrientation(Qt::Horizontal);
+        widget = new QWidget(splitter);
+        widget->setObjectName(QStringLiteral("widget"));
+        verticalLayout_4 = new QVBoxLayout(widget);
         verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label = new QLabel(centralWidget);
+        label = new QLabel(widget);
         label->setObjectName(QStringLiteral("label"));
 
         verticalLayout->addWidget(label);
 
-        treeView = new QTreeView(centralWidget);
+        treeView = new QTreeView(widget);
         treeView->setObjectName(QStringLiteral("treeView"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
@@ -162,12 +171,12 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        label_2 = new QLabel(centralWidget);
+        label_2 = new QLabel(widget);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         verticalLayout_3->addWidget(label_2);
 
-        textBrowser = new QTextBrowser(centralWidget);
+        textBrowser = new QTextBrowser(widget);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
         sizePolicy1.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
         textBrowser->setSizePolicy(sizePolicy1);
@@ -179,28 +188,23 @@ public:
 
         verticalLayout_4->setStretch(0, 5);
         verticalLayout_4->setStretch(1, 1);
-
-        horizontalLayout->addLayout(verticalLayout_4);
-
-        line = new QFrame(centralWidget);
-        line->setObjectName(QStringLiteral("line"));
-        line->setFrameShape(QFrame::VLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        horizontalLayout->addWidget(line);
-
-        verticalLayout_7 = new QVBoxLayout();
+        splitter->addWidget(widget);
+        widget1 = new QWidget(splitter);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        verticalLayout_7 = new QVBoxLayout(widget1);
         verticalLayout_7->setSpacing(6);
+        verticalLayout_7->setContentsMargins(11, 11, 11, 11);
         verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        label_3 = new QLabel(centralWidget);
+        label_3 = new QLabel(widget1);
         label_3->setObjectName(QStringLiteral("label_3"));
 
         verticalLayout_2->addWidget(label_3);
 
-        textEdit = new QTextEdit(centralWidget);
+        textEdit = new QTextEdit(widget1);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
         textEdit->setSizePolicy(sizePolicy1);
@@ -213,12 +217,12 @@ public:
         verticalLayout_5 = new QVBoxLayout();
         verticalLayout_5->setSpacing(6);
         verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        label_4 = new QLabel(centralWidget);
+        label_4 = new QLabel(widget1);
         label_4->setObjectName(QStringLiteral("label_4"));
 
         verticalLayout_5->addWidget(label_4);
 
-        textBrowser_2 = new QTextBrowser(centralWidget);
+        textBrowser_2 = new QTextBrowser(widget1);
         textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
         sizePolicy1.setHeightForWidth(textBrowser_2->sizePolicy().hasHeightForWidth());
         textBrowser_2->setSizePolicy(sizePolicy1);
@@ -231,12 +235,12 @@ public:
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setSpacing(6);
         verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        label_5 = new QLabel(centralWidget);
+        label_5 = new QLabel(widget1);
         label_5->setObjectName(QStringLiteral("label_5"));
 
         verticalLayout_6->addWidget(label_5);
 
-        textBrowser_3 = new QTextBrowser(centralWidget);
+        textBrowser_3 = new QTextBrowser(widget1);
         textBrowser_3->setObjectName(QStringLiteral("textBrowser_3"));
         sizePolicy1.setHeightForWidth(textBrowser_3->sizePolicy().hasHeightForWidth());
         textBrowser_3->setSizePolicy(sizePolicy1);
@@ -249,11 +253,10 @@ public:
         verticalLayout_7->setStretch(0, 4);
         verticalLayout_7->setStretch(1, 1);
         verticalLayout_7->setStretch(2, 1);
+        splitter->addWidget(widget1);
 
-        horizontalLayout->addLayout(verticalLayout_7);
+        gridLayout->addWidget(splitter, 0, 0, 1, 1);
 
-        horizontalLayout->setStretch(0, 1);
-        horizontalLayout->setStretch(2, 3);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));

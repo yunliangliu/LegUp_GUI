@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     setWindowState(Qt::WindowMaximized);
+    ui->splitter->setStretchFactor(0,1);
+    ui->splitter->setStretchFactor(1,2.5);
 
     init();
     createActions();
