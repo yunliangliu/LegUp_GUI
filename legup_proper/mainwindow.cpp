@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowState(Qt::WindowMaximized);
+
     init();
     createActions();
     createToolBar();
@@ -161,7 +163,9 @@ void MainWindow::run(){
 void MainWindow::about(){
     QMessageBox::about(this, tr("About LegUp"),
              tr("LegUp is an open source <b>high-level synthesis</b> "
-                "tool being developed at the University of Toronto."));
+                "tool being developed at the University of Toronto.<br>"
+                "You can learn more about LegUp by visiting its official website: "
+                "<a href='http://legup.eecg.utoronto.ca/'>http://legup.eecg.utoronto.ca/</a>"));
 }
 
 /***misc functions***/

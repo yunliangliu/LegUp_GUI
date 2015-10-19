@@ -71,6 +71,11 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(530, 365);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         actionAbout_LegUp = new QAction(MainWindow);
         actionAbout_LegUp->setObjectName(QStringLiteral("actionAbout_LegUp"));
         QIcon icon;
@@ -131,6 +136,11 @@ public:
 
         treeView = new QTreeView(centralWidget);
         treeView->setObjectName(QStringLiteral("treeView"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(treeView->sizePolicy().hasHeightForWidth());
+        treeView->setSizePolicy(sizePolicy1);
 
         verticalLayout->addWidget(treeView);
 
@@ -141,9 +151,13 @@ public:
 
         textBrowser = new QTextBrowser(centralWidget);
         textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        sizePolicy1.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
+        textBrowser->setSizePolicy(sizePolicy1);
 
         verticalLayout->addWidget(textBrowser);
 
+        verticalLayout->setStretch(1, 5);
+        verticalLayout->setStretch(3, 1);
 
         horizontalLayout->addLayout(verticalLayout);
 
@@ -157,6 +171,8 @@ public:
 
         textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
+        textEdit->setSizePolicy(sizePolicy1);
 
         verticalLayout_2->addWidget(textEdit);
 
@@ -167,6 +183,8 @@ public:
 
         textBrowser_2 = new QTextBrowser(centralWidget);
         textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
+        sizePolicy1.setHeightForWidth(textBrowser_2->sizePolicy().hasHeightForWidth());
+        textBrowser_2->setSizePolicy(sizePolicy1);
 
         verticalLayout_2->addWidget(textBrowser_2);
 
@@ -177,12 +195,19 @@ public:
 
         textBrowser_3 = new QTextBrowser(centralWidget);
         textBrowser_3->setObjectName(QStringLiteral("textBrowser_3"));
+        sizePolicy1.setHeightForWidth(textBrowser_3->sizePolicy().hasHeightForWidth());
+        textBrowser_3->setSizePolicy(sizePolicy1);
 
         verticalLayout_2->addWidget(textBrowser_3);
 
+        verticalLayout_2->setStretch(1, 4);
+        verticalLayout_2->setStretch(3, 1);
+        verticalLayout_2->setStretch(5, 1);
 
         horizontalLayout->addLayout(verticalLayout_2);
 
+        horizontalLayout->setStretch(0, 1);
+        horizontalLayout->setStretch(1, 3);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -248,7 +273,7 @@ public:
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">LegUp is an open source high-level synthesis tool being developed at the University of Toronto. The LegUp framework allows researchers to improve C to Verilog synthesis without building an infrastructure from scratch.</p></body></html>", 0));
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">LegUp is an open source high-level synthesis tool being developed at the University of Toronto. The LegUp framework allows researchers to improve C to Verilog synthesis without building an infrastructure from scratch. Our long-term vision is to make FPGA programming easier for software developers.</p></body></html>", 0));
         label_3->setText(QApplication::translate("MainWindow", "File Edit", 0));
         label_4->setText(QApplication::translate("MainWindow", "Output", 0));
         textBrowser_2->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
