@@ -12,20 +12,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowState(Qt::WindowMaximized);
     ui->splitter->setStretchFactor(0,1);
-    ui->splitter->setStretchFactor(1,2.5);
+    ui->splitter->setStretchFactor(1,3);
 
     init();
     createActions();
     createToolBar();
 
     statusBar->showMessage(tr("Welcome to LegUp"));
-
-    dirModel = new QFileSystemModel(this);
-    dirModel->setRootPath("C:/");
-    treeView->setModel(dirModel);
-    QModelIndex index=dirModel->index("C:/Users/Ang/Documents/legup");
-    treeView->setRootIndex(index);
-    treeView->show();
 }
 
 MainWindow::~MainWindow()
@@ -110,7 +103,12 @@ void MainWindow::newFile(){
 }
 
 void MainWindow::openProject(){
-
+    if (maybeSave()) {
+        QString pPath = QFileDialog::getExistingDirectory(this, tr("Open Project"),
+                                     QDir::homePath(), QFileDialog::ShowDirsOnly);
+        if(!pPath.isEmpty())
+            loadProject(pPath);
+    }
 }
 
 void MainWindow::openFile(){
@@ -235,4 +233,23 @@ void MainWindow::setCurrentFile(const QString &fileName)
 void MainWindow::documentWasModified()
 {
     setWindowModified(fileEdit->document()->isModified());
+}
+
+void MainWindow::loadProject(const QString &pPath){
+    dirModel = new QFileSystemModel(this);
+    dirModel->setRootPath(QDir::rootPath());
+    treeView->setModel(dirModel);
+
+    QModelIndex index=dirModel->index(pPath);
+    treeView->setRootIndex(index);
+
+    treeView->show();
+}
+
+void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
+{
+    if(!dirModel->fileInfo(index).isDir()){
+        QString fileName=dirModel->fileInfo(index).absoluteFilePath();
+        loadFile(fileName);
+    }
 }

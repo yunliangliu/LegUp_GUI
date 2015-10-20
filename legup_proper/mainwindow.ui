@@ -32,7 +32,7 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_4" stretch="5,1">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
@@ -85,7 +85,7 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="4,1,1">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -103,6 +103,12 @@ p, li { white-space: pre-wrap; }
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Courier</family>
+              <pointsize>11</pointsize>
+             </font>
             </property>
            </widget>
           </item>
@@ -224,8 +230,14 @@ p, li { white-space: pre-wrap; }
      <string>Options</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuBuild"/>
+   <addaction name="menuView"/>
    <addaction name="menuOptions"/>
    <addaction name="menuHelp"/>
   </widget>

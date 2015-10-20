@@ -28,6 +28,8 @@ private slots:
 
     void documentWasModified();
 
+    void on_treeView_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
 
@@ -60,6 +62,7 @@ private:
     bool saveFile(const QString &fileName);
     bool maybeSave();
     void setCurrentFile(const QString &fileName);
+    void loadProject(const QString &pPath);
 
 };
 
