@@ -47,10 +47,9 @@ private:
     QStatusBar *statusBar;
 
     QTextEdit *fileEdit;
+    QTreeView *treeView;
 
     QString curFile;
-
-    QTreeView *treeView;
 
     QFileSystemModel *dirModel;
 
@@ -58,11 +57,11 @@ private:
     void createActions();
     void createToolBar();
 
+    void loadProject(const QString &pPath);
     void loadFile(const QString &fileName);
     bool saveFile(const QString &fileName);
     bool maybeSave();
     void setCurrentFile(const QString &fileName);
-    void loadProject(const QString &pPath);
 
 };
 

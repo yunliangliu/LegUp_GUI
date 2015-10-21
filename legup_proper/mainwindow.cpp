@@ -10,13 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    setWindowState(Qt::WindowMaximized);
-    ui->splitter->setStretchFactor(0,1);
-    ui->splitter->setStretchFactor(1,3);
-
     init();
     createActions();
     createToolBar();
+
+    setWindowState(Qt::WindowMaximized);
+    setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
+    setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
 
     statusBar->showMessage(tr("Welcome to LegUp"));
 }
@@ -42,7 +42,6 @@ void MainWindow::init(){
     statusBar = ui->statusBar;
 
     fileEdit = ui->textEdit;
-
     treeView = ui->treeView;
 
     connect(fileEdit->document(), SIGNAL(contentsChanged()),
@@ -113,7 +112,7 @@ void MainWindow::openProject(){
 
 void MainWindow::openFile(){
     if (maybeSave()) {
-        QString fileName = QFileDialog::getOpenFileName(this);
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), QDir::homePath());
         if (!fileName.isEmpty())
             loadFile(fileName);
     }
@@ -227,6 +226,7 @@ void MainWindow::setCurrentFile(const QString &fileName)
     QString shownName = curFile;
     if (curFile.isEmpty())
         shownName = "untitled.txt";
+    ui->fileLabel->setText(shownName);
     setWindowFilePath(shownName);
 }
 
@@ -248,8 +248,11 @@ void MainWindow::loadProject(const QString &pPath){
 
 void MainWindow::on_treeView_doubleClicked(const QModelIndex &index)
 {
-    if(!dirModel->fileInfo(index).isDir()){
+    if(dirModel->fileInfo(index).isDir()){
+        treeView->expandsOnDoubleClick();
+    }else{
         QString fileName=dirModel->fileInfo(index).absoluteFilePath();
         loadFile(fileName);
     }
 }
+

@@ -13,13 +13,14 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDockWidget>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
@@ -45,26 +46,9 @@ public:
     QAction *actionOpen_File;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QSplitter *splitter;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout_4;
-    QVBoxLayout *verticalLayout;
-    QLabel *label;
-    QTreeView *treeView;
-    QVBoxLayout *verticalLayout_3;
-    QLabel *label_2;
-    QTextBrowser *textBrowser;
-    QWidget *layoutWidget1;
-    QVBoxLayout *verticalLayout_7;
     QVBoxLayout *verticalLayout_2;
-    QLabel *label_3;
+    QLabel *fileLabel;
     QTextEdit *textEdit;
-    QVBoxLayout *verticalLayout_5;
-    QLabel *label_4;
-    QTextBrowser *textBrowser_2;
-    QVBoxLayout *verticalLayout_6;
-    QLabel *label_5;
-    QTextBrowser *textBrowser_3;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuOpen;
@@ -73,14 +57,27 @@ public:
     QMenu *menuHelp;
     QMenu *menuOptions;
     QMenu *menuView;
+    QMenu *menuDebug;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QDockWidget *outputDock;
+    QWidget *dockWidgetContents_6;
+    QHBoxLayout *horizontalLayout_5;
+    QTextBrowser *textBrowser_2;
+    QDockWidget *projectDock;
+    QWidget *dockWidgetContents;
+    QHBoxLayout *horizontalLayout_3;
+    QTreeView *treeView;
+    QDockWidget *aboutDock;
+    QWidget *dockWidgetContents_9;
+    QHBoxLayout *horizontalLayout;
+    QTextBrowser *aboutText;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(541, 738);
+        MainWindow->resize(540, 605);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -138,134 +135,36 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        splitter = new QSplitter(centralWidget);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setOrientation(Qt::Horizontal);
-        layoutWidget = new QWidget(splitter);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        verticalLayout_4 = new QVBoxLayout(layoutWidget);
-        verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        label = new QLabel(layoutWidget);
-        label->setObjectName(QStringLiteral("label"));
-
-        verticalLayout->addWidget(label);
-
-        treeView = new QTreeView(layoutWidget);
-        treeView->setObjectName(QStringLiteral("treeView"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(treeView->sizePolicy().hasHeightForWidth());
-        treeView->setSizePolicy(sizePolicy1);
-
-        verticalLayout->addWidget(treeView);
-
-
-        verticalLayout_4->addLayout(verticalLayout);
-
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        verticalLayout_3->addWidget(label_2);
-
-        textBrowser = new QTextBrowser(layoutWidget);
-        textBrowser->setObjectName(QStringLiteral("textBrowser"));
-        sizePolicy1.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
-        textBrowser->setSizePolicy(sizePolicy1);
-
-        verticalLayout_3->addWidget(textBrowser);
-
-
-        verticalLayout_4->addLayout(verticalLayout_3);
-
-        verticalLayout_4->setStretch(0, 5);
-        verticalLayout_4->setStretch(1, 1);
-        splitter->addWidget(layoutWidget);
-        layoutWidget1 = new QWidget(splitter);
-        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        verticalLayout_7 = new QVBoxLayout(layoutWidget1);
-        verticalLayout_7->setSpacing(6);
-        verticalLayout_7->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
+        gridLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        label_3 = new QLabel(layoutWidget1);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        fileLabel = new QLabel(centralWidget);
+        fileLabel->setObjectName(QStringLiteral("fileLabel"));
 
-        verticalLayout_2->addWidget(label_3);
+        verticalLayout_2->addWidget(fileLabel);
 
-        textEdit = new QTextEdit(layoutWidget1);
+        textEdit = new QTextEdit(centralWidget);
         textEdit->setObjectName(QStringLiteral("textEdit"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
         textEdit->setSizePolicy(sizePolicy1);
         QFont font;
-        font.setFamily(QStringLiteral("Courier"));
-        font.setPointSize(11);
+        font.setFamily(QStringLiteral("Consolas"));
+        font.setPointSize(10);
         textEdit->setFont(font);
 
         verticalLayout_2->addWidget(textEdit);
 
 
-        verticalLayout_7->addLayout(verticalLayout_2);
-
-        verticalLayout_5 = new QVBoxLayout();
-        verticalLayout_5->setSpacing(6);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        label_4 = new QLabel(layoutWidget1);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        verticalLayout_5->addWidget(label_4);
-
-        textBrowser_2 = new QTextBrowser(layoutWidget1);
-        textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
-        sizePolicy1.setHeightForWidth(textBrowser_2->sizePolicy().hasHeightForWidth());
-        textBrowser_2->setSizePolicy(sizePolicy1);
-
-        verticalLayout_5->addWidget(textBrowser_2);
-
-
-        verticalLayout_7->addLayout(verticalLayout_5);
-
-        verticalLayout_6 = new QVBoxLayout();
-        verticalLayout_6->setSpacing(6);
-        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        label_5 = new QLabel(layoutWidget1);
-        label_5->setObjectName(QStringLiteral("label_5"));
-
-        verticalLayout_6->addWidget(label_5);
-
-        textBrowser_3 = new QTextBrowser(layoutWidget1);
-        textBrowser_3->setObjectName(QStringLiteral("textBrowser_3"));
-        sizePolicy1.setHeightForWidth(textBrowser_3->sizePolicy().hasHeightForWidth());
-        textBrowser_3->setSizePolicy(sizePolicy1);
-
-        verticalLayout_6->addWidget(textBrowser_3);
-
-
-        verticalLayout_7->addLayout(verticalLayout_6);
-
-        verticalLayout_7->setStretch(0, 4);
-        verticalLayout_7->setStretch(1, 1);
-        verticalLayout_7->setStretch(2, 1);
-        splitter->addWidget(layoutWidget1);
-
-        gridLayout->addWidget(splitter, 0, 0, 1, 1);
+        gridLayout->addLayout(verticalLayout_2, 0, 0, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 541, 21));
+        menuBar->setGeometry(QRect(0, 0, 540, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuOpen = new QMenu(menuFile);
@@ -280,6 +179,8 @@ public:
         menuOptions->setObjectName(QStringLiteral("menuOptions"));
         menuView = new QMenu(menuBar);
         menuView->setObjectName(QStringLiteral("menuView"));
+        menuDebug = new QMenu(menuBar);
+        menuDebug->setObjectName(QStringLiteral("menuDebug"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -287,9 +188,61 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        outputDock = new QDockWidget(MainWindow);
+        outputDock->setObjectName(QStringLiteral("outputDock"));
+        dockWidgetContents_6 = new QWidget();
+        dockWidgetContents_6->setObjectName(QStringLiteral("dockWidgetContents_6"));
+        horizontalLayout_5 = new QHBoxLayout(dockWidgetContents_6);
+        horizontalLayout_5->setSpacing(6);
+        horizontalLayout_5->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        textBrowser_2 = new QTextBrowser(dockWidgetContents_6);
+        textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
+
+        horizontalLayout_5->addWidget(textBrowser_2);
+
+        outputDock->setWidget(dockWidgetContents_6);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(8), outputDock);
+        projectDock = new QDockWidget(MainWindow);
+        projectDock->setObjectName(QStringLiteral("projectDock"));
+        dockWidgetContents = new QWidget();
+        dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
+        horizontalLayout_3 = new QHBoxLayout(dockWidgetContents);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        treeView = new QTreeView(dockWidgetContents);
+        treeView->setObjectName(QStringLiteral("treeView"));
+
+        horizontalLayout_3->addWidget(treeView);
+
+        projectDock->setWidget(dockWidgetContents);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), projectDock);
+        aboutDock = new QDockWidget(MainWindow);
+        aboutDock->setObjectName(QStringLiteral("aboutDock"));
+        dockWidgetContents_9 = new QWidget();
+        dockWidgetContents_9->setObjectName(QStringLiteral("dockWidgetContents_9"));
+        horizontalLayout = new QHBoxLayout(dockWidgetContents_9);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        aboutText = new QTextBrowser(dockWidgetContents_9);
+        aboutText->setObjectName(QStringLiteral("aboutText"));
+
+        horizontalLayout->addWidget(aboutText);
+
+        aboutDock->setWidget(dockWidgetContents_9);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), aboutDock);
+        outputDock->raise();
+        projectDock->raise();
+        aboutDock->raise();
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuBuild->menuAction());
+        menuBar->addAction(menuDebug->menuAction());
         menuBar->addAction(menuView->menuAction());
         menuBar->addAction(menuOptions->menuAction());
         menuBar->addAction(menuHelp->menuAction());
@@ -324,29 +277,7 @@ public:
         actionNew_File->setText(QApplication::translate("MainWindow", "New File", 0));
         actionOpen_Project_2->setText(QApplication::translate("MainWindow", "Open Project", 0));
         actionOpen_File->setText(QApplication::translate("MainWindow", "Open File", 0));
-        label->setText(QApplication::translate("MainWindow", "Projects", 0));
-        label_2->setText(QApplication::translate("MainWindow", "About", 0));
-        textBrowser->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">LegUp is an open source high-level synthesis tool being developed at the University of Toronto. The LegUp framework allows researchers to improve C to Verilog synthesis without building an infrastructure from scratch. Our long-term vision is to make FPGA programming easier for software developers.</p></body></html>", 0));
-        label_3->setText(QApplication::translate("MainWindow", "File Edit", 0));
-        label_4->setText(QApplication::translate("MainWindow", "Output", 0));
-        textBrowser_2->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Error: File 'hello.c' not found! Error code: 123</p></body></html>", 0));
-        label_5->setText(QApplication::translate("MainWindow", "Console", 0));
-        textBrowser_3->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ang-PC: $ gcc hello.c -o hello</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ang-PC: $ ./hello</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ang-PC: $ Hello World</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ang-PC: $ </p></body></html>", 0));
+        fileLabel->setText(QApplication::translate("MainWindow", "untitled", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Open", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "New", 0));
@@ -354,6 +285,20 @@ public:
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));
         menuOptions->setTitle(QApplication::translate("MainWindow", "Options", 0));
         menuView->setTitle(QApplication::translate("MainWindow", "View", 0));
+        menuDebug->setTitle(QApplication::translate("MainWindow", "Debug", 0));
+        outputDock->setWindowTitle(QApplication::translate("MainWindow", "Output", 0));
+        textBrowser_2->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Fatal Error: File &quot;hello.c&quot; not found! Error code: 123</p></body></html>", 0));
+        projectDock->setWindowTitle(QApplication::translate("MainWindow", "Projects", 0));
+        aboutDock->setWindowTitle(QApplication::translate("MainWindow", "About LegUp", 0));
+        aboutText->setHtml(QApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">LegUp is an open source high-level synthesis tool being developed at the University of Toronto. The LegUp framework allows researchers to improve C to Verilog synthesis without building an infrastructure from scratch.</span></p></body></html>", 0));
     } // retranslateUi
 
 };
